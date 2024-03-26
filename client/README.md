@@ -9,7 +9,7 @@ Dean, Nahom, Oscar and Thomas
 
 # US City Guessing Game
 
-Welcome to the US City Guessing Game. Test your knowledge of US cities and challenge your friends to see who can guess the most!
+Welcome to the US City Guessing Game. Test your knowledge of US cities!
 
 # Introduction
 
