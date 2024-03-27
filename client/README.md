@@ -1,5 +1,6 @@
 # Running Instructions: https://djroos.com/
 
+cd client
 npm install
 npm start
 
