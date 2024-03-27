@@ -1,8 +1,11 @@
-# Running Instructions: https://djroos.com/
+# Link to Project: : https://djroos.com/ <br />
 
-cd client
-npm install
-npm start
+# Running Instructions
+cd client <br />
+npm install <br />
+npm start <br />
+
+
 
 # Hosts
 
