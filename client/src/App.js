@@ -1,15 +1,18 @@
 import CreateTable from "./CreateTable"
 import Cities from "./city_data.json"
+import Map from "./Map"
+
 function App() {
 
   return (
     <div>
-     
-      <CreateTable></CreateTable> {/* This is just for testing purposes*/}
 
       {/* Component to generate target city */}
 
-      {/* Map component - will later include projecting guesses onto map */}
+      {
+      /* Map component - will later include projecting guesses onto map */
+      <Map></Map>
+      }
 
       {/* Component to handle guesses (dropdown that you click, not type and enter) */}
 
