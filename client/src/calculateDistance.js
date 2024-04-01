@@ -68,4 +68,4 @@ function deg2rad(deg) {
 
 
 // Test the function with two city names
-getDistance("Philadelphia", "Atlanta");
+//getDistance("Philadelphia", "Atlanta");
