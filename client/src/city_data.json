@@ -1,4 +1,5 @@
-[
+{
+  "city_details":[
  {
    "id": 1,
    "city": "Abilene",
@@ -11952,3 +11953,4 @@
    "population": 30832
  }
 ]
+}
