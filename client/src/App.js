@@ -1,6 +1,7 @@
 // import CreateTable from "./CreateTable"
 import GuessList from "./GuessList"
 import Cities from "./city_data.json"
+import AutocompleteDropdown from './AutocompleteDropdown';
 import Map from "./Map"
 import React from "react"
 
@@ -16,8 +17,6 @@ function setCurrentGuess(newCity, newDistance){
   currentGuess.distance = newDistance;
 }
 
-
-
 function App() {
 
   //testing purposes, delete later
@@ -26,6 +25,7 @@ function App() {
 
   return (
     <div>
+      <AutocompleteDropdown />
      
       {/* <CreateTable></CreateTable> This is just for testing purposes */}
 
@@ -38,6 +38,7 @@ function App() {
       }
 
       {/* Component to handle guesses (dropdown that you click, not type and enter) */}
+    
 
       {/* Component that takes guess from above and calculates distance */}
 
