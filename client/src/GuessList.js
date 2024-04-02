@@ -1,16 +1,16 @@
 import React, { useState } from "react"
-// import { currentGuess } from "./App";
+import { currentGuess } from "./App";
 import Cities from "./city_data.json"
 
 // needed for displaying map
 let nextId = 0;
 
 // testing purposes- delete later
-var curGuess = {
-  city: "",
-  state: "",
-  distance: 0
-}
+// var curGuess = {
+//   city: "",
+//   state: "",
+//   distance: 0
+// }
 
 // array that is finally displayed
 var sorted = []
@@ -35,17 +35,17 @@ export default function GuessList(){
       <button onClick={() => {
 
         // testing purposes - generates random city and random numer to sort them by
-        var rand = getRandomInt(Cities.length)  
-        curGuess = {
-          city: Cities[rand].city,
-          state: Cities[rand].state_id,
-          distance: getRandomInt(10000)
-        };
+        // var rand = getRandomInt(Cities.length)  
+        // curGuess = {
+        //   city: Cities[rand].city,
+        //   state: Cities[rand].state_id,
+        //   distance: getRandomInt(10000)
+        // };
 
         // this appends whatever the current guess is to the array of guesses
         setGuessList([
           ...guessList,
-          { id: nextId++, city: curGuess.city, distance: curGuess.distance, state:curGuess.state }
+          { id: nextId++, city: currentGuess.city, distance: currentGuess.distance, state:currentGuess.state_id }
         ]);
 
         // this sorts the array into a non-state array which is then what is displayed
