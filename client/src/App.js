@@ -3,20 +3,22 @@ import GuessList from "./GuessList"
 import Cities from "./city_data.json"
 import Map from "./Map"
 import React from "react"
-import { getDistance } from "./calculateDistance"
 import Autocomplete from "./AutocompleteDropdown"
 
 //this is how whatever the guess is can be exported to the GuessList file
-export var currentGuess = Cities.find(city => city.city === "Philadelphia");
+export var currentGuess;
 
 //for testing purposes, static target city of Boston until we create
 //logic to generate a target city
 export var targetCity = Cities.find(city => city.city === "Boston");
 
 //setter for the current guess
-function setCurrentGuess(newCity, newDistance){
-  currentGuess.city = newCity;
-  currentGuess.distance = newDistance;
+export function setCurrentGuess(newCity){
+  currentGuess = newCity;
+}
+
+export function getCurrentGuess(){
+  return currentGuess;
 }
 
 function App() {
@@ -35,23 +37,16 @@ function App() {
 
       {
       /* Map component - will later include projecting guesses onto map */
-      <Map></Map>
+      
       }
 
       {/* Component to handle guesses (dropdown that you click, not type and enter) */}
-
       <Autocomplete />
 
-      {/* Component that takes guess from above and calculates distance */}
-
       {/* Component that displays previous guesses in order of proximity */}
-
-      {/* testing purposes, delete later */}
-      {setCurrentGuess("Philadelphia", getDistance(currentGuess.city, targetCity.city))}
-
-      {console.log(getDistance("Philadelphia", "Boston"))}
-
     <GuessList />
+
+    <Map></Map>
 
     </div>
 

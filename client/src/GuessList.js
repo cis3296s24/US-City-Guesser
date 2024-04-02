@@ -1,65 +1,59 @@
 import React, { useState } from "react"
-import { currentGuess } from "./App";
-import Cities from "./city_data.json"
+import { currentGuess, targetCity, getCurrentGuess } from "./App";
+import { getDistance } from "./calculateDistance";
 
-// needed for displaying map
+//index for the array of guesses
 let nextId = 0;
 
-// testing purposes- delete later
-// var curGuess = {
-//   city: "",
-//   state: "",
-//   distance: 0
-// }
+//object variable to hold current guess
+let guess
 
-// array that is finally displayed
-var sorted = []
-
-// testing purposes, delete later
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+//array for guesses
+var guessList = [];
 
 export default function GuessList(){
 
-  // using setState for lastGuess, which is the guess being added, 
-  // and guessList, which is an array of all of the guesses.
-  const [guessList, setGuessList] = useState([]);
+  //the sorted array uses the useState hook so it can be dynamically displayed
+  const [sorted, setSorted] = useState([]);
 
   return (
     <div>
-      <h1>Guesses:</h1>
-      <h3>This button displays current guessed city and it's distance away</h3>
 
       {/* button for testing, but this will be the logic for guessing */}
-      <button onClick={() => {
+      <button onClick={function() {
 
-        // testing purposes - generates random city and random numer to sort them by
-        // var rand = getRandomInt(Cities.length)  
-        // curGuess = {
-        //   city: Cities[rand].city,
-        //   state: Cities[rand].state_id,
-        //   distance: getRandomInt(10000)
-        // };
+        //nothing should happen if no city is entered
+        if (getCurrentGuess() == null){
+          console.log("null")
+        //nothing should happen if a city is guessed more than once
+        } else if (guessList.some(e => e.city === currentGuess.city)) {
+          console.log("Already guessed that")
+        } else {
+        
+          //gets the current guess and assigns it to guess
+          guess = getCurrentGuess();
 
-        // this appends whatever the current guess is to the array of guesses
-        setGuessList([
-          ...guessList,
-          { id: nextId++, city: currentGuess.city, distance: currentGuess.distance, state:currentGuess.state_id }
-        ]);
+          //adds current guess to the guessList
+          guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.city, targetCity.city), state:guess.state_id }
+          );
 
-        // this sorts the array into a non-state array which is then what is displayed
-        sorted = [...guessList].sort((a, b) => {
-          return a.distance - b.distance;
-        });
+          // this sorts the array into a state array called "sorted" which is then what is displayed
+          setSorted([...guessList].sort((a, b) => {
+            return a.distance - b.distance;
+          }))
+
+        }
 
         // button to run code
-      }}>Click me</button>
+      }}>Submit Guess</button>
+
+
+      <h2>Guesses:</h2>
 
       {/* The actual list */}
       <ul>
         {sorted.map(guess => (
-          <li key={guess.id}>{guess.city + ", " + guess.state + ": " + guess.distance}</li>
+          <li key={guess.id}>{guess.city + ", " + guess.state + ": " + guess.distance + " miles"}</li>
         ))}
       </ul>
     </div>

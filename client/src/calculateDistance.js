@@ -23,7 +23,7 @@ export function getDistance(cityName1, cityName2) {
 
         const distance = R * c; // Distance in miles
         console.log("Distance between two cities in miles => ", distance.toFixed(2));
-        return distance;
+        return Math.round(distance);
 
     } catch (error) {
         console.error('Error parsing JSON:', error);
