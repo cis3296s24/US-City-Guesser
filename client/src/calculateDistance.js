@@ -1,15 +1,15 @@
 import Cities from "./city_data.json"
 
-export function getDistance(cityName1, cityName2) {
+export function getDistance(cityID1, cityID2) {
 
     try {
         // Retrieve latitude and longitude for the first city
-        const cityLat1 = getLatitude(cityName1, Cities);
-        const cityLong1 = getLongitude(cityName1, Cities);
+        const cityLat1 = getLatitude(cityID1, Cities);
+        const cityLong1 = getLongitude(cityID1, Cities);
 
         // Retrieve latitude and longitude for the second city
-        const cityLat2 = getLatitude(cityName2, Cities);
-        const cityLong2 = getLongitude(cityName2, Cities);
+        const cityLat2 = getLatitude(cityID2, Cities);
+        const cityLong2 = getLongitude(cityID2, Cities);
 
         //Calculations
         var R = 3958.8;
@@ -30,24 +30,24 @@ export function getDistance(cityName1, cityName2) {
     }
 }
 
-function getLatitude(cityName, Cities) {
-    const city = Cities.find(city => city.city === cityName);
+function getLatitude(cityID, Cities) {
+    const city = Cities.find(city => city.id === cityID);
     if (city) {
         const { lat: latitude } = city;
         return latitude;
     } else {
-        console.log(`City '${cityName}' not found`);
+        console.log(`City '${cityID}' not found`);
         return null;
     }
 }
 
-function getLongitude(cityName, Cities) {
-    const city = Cities.find(city => city.city === cityName);
+function getLongitude(cityID, Cities) {
+    const city = Cities.find(city => city.id === cityID);
     if (city) {
         const { lng: longitude } = city;
         return longitude;
     } else {
-        console.log(`City '${cityName}' not found`)
+        console.log(`City '${cityID}' not found`)
         return null; 
     }
 }

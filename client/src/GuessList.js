@@ -18,7 +18,6 @@ export default function GuessList(){
 
   return (
     <div>
-
       {/* button for testing, but this will be the logic for guessing */}
       <button onClick={function() {
 
@@ -26,7 +25,7 @@ export default function GuessList(){
         if (getCurrentGuess() == null){
           console.log("null")
         //nothing should happen if a city is guessed more than once
-        } else if (guessList.some(e => e.city === currentGuess.city)) {
+        } else if (guessList.some(e => e.id === currentGuess.id)) {
           console.log("Already guessed that")
         } else {
         
@@ -34,7 +33,7 @@ export default function GuessList(){
           guess = getCurrentGuess();
 
           //adds current guess to the guessList
-          guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.city, targetCity.city), state:guess.state_id }
+          guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.id, targetCity.id), state:guess.state_id }
           );
 
           // this sorts the array into a state array called "sorted" which is then what is displayed
