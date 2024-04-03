@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import cityData from './city_data.json';
+import Cities from './city_data.json';
+import { setCurrentGuess } from './App';
+
 
 const Autocomplete = () => {
   const [input, setInput] = useState('');
@@ -10,7 +12,7 @@ const Autocomplete = () => {
     setInput(value);
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, 'i');
-      setSuggestions(cityData.sort().filter(v => regex.test(v.city)));
+      setSuggestions(Cities.sort().filter(v => regex.test(v.city)));
     } else {
       setSuggestions([]);
     }
@@ -27,7 +29,7 @@ const Autocomplete = () => {
     }
     return (
       <ul>
-        {suggestions.map((item) => <li onClick={() => suggestionSelected(item.city)}>{item.city}</li>)}
+        {suggestions.map((item) => <li key={item.id} onClick={() => {suggestionSelected(item.city + ", " + item.state_id); setCurrentGuess(item); console.log(item)}}>{item.city +", " + item.state_id}</li>)}
       </ul>
     );
   };
