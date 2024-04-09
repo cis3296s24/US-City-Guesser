@@ -5,6 +5,7 @@ import Cities from "./city_data.json"
 import React from "react"
 import Autocomplete from "./AutocompleteDropdown"
 // import "./App.css"
+import infoPopUp from "./Info_PopUp"
 
 //this is how whatever the guess is can be exported to the GuessList file
 export var currentGuess;
@@ -49,6 +50,9 @@ function App() {
 
       {/* Component that displays previous guesses in order of proximity */}
     <GuessList />
+
+    {/* Component that displays information after a button is clicked*/}
+    <infoPopUp />
 
     {/* <Map></Map> */}
 
