@@ -1,7 +1,7 @@
 // import CreateTable from "./CreateTable"
 import GuessList from "./GuessList"
 import Cities from "./city_data.json"
-// import Map from "./Map"
+import Map from "./Map"
 import React from "react"
 import Autocomplete from "./AutocompleteDropdown"
 // import "./App.css"
@@ -38,6 +38,7 @@ function App() {
 
       {
       /* Map component - will later include projecting guesses onto map */
+      // <Map />
       
       }
 
