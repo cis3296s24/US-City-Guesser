@@ -1,8 +1,5 @@
-.home {
-  background-color: whie;
+.GuessList {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-
 }

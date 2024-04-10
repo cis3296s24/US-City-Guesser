@@ -13,6 +13,8 @@ import GenerateCity from "./GenerateCity"
 
 import { useState, useEffect } from "react";
 
+import "./App.css"
+
 
 //this is how whatever the guess is can be exported to the GuessList file
 export var currentGuess;
