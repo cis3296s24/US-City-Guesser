@@ -1,11 +1,15 @@
 // import CreateTable from "./CreateTable"
 import GuessList from "./GuessList"
 import Cities from "./city_data.json"
-import Map from "./Map"
-//import React from "react"
+
+// import Map from "./Map"
+import React from "react"
+
 import Autocomplete from "./AutocompleteDropdown"
 // import "./App.css"
-import infoPopUp from "./Info_PopUp"
+import InfoPopUp from "./Info_PopUp"
+import Settings from "./Settings"
+import GenerateCity from "./GenerateCity"
 
 import { useState, useEffect } from "react";
 
@@ -18,6 +22,7 @@ export var currentGuess;
 
 //targetCity
 export var targetCity;
+
 
 //setter for the current guess
 export function setCurrentGuess(newCity){
@@ -91,8 +96,9 @@ function App() {
     <GuessList />
 
     {/* Component that displays information after a button is clicked*/}
-    <infoPopUp />
-
+    <InfoPopUp />
+    
+    <Settings />
     {/* <Map></Map> */}
     </div>
   )

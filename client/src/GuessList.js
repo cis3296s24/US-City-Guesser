@@ -57,6 +57,9 @@ export default function GuessList(){
 
       }}>Submit Guess</button>
 
+
+      <Map guesses={displayList} /> 
+
       <h2>Guesses:</h2>
 
       {/* The actual list */}
@@ -67,7 +70,6 @@ export default function GuessList(){
       </ul>
       
       {/* the actual map */}
-      <Map guesses={displayList} />
 
     </div>
   );
