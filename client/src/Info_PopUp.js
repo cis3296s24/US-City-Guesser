@@ -14,7 +14,7 @@ function InfoPopUp() {
 
   return (
     <div className="info-container">
-      <button className="open-button" onClick={toggleInfo}>Click Me for Info</button>
+      <button className="open-button" onClick={toggleInfo}>Info</button>
       {displayInfo && (
         <div>
           <div className="overlay" onClick={closeInfo}></div>
