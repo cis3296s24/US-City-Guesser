@@ -19,7 +19,7 @@ export default function Map({guesses = []}) {
 
     //eslint-disable-next-line
     const statesBackground = svg.append('path')
-        .attr('fill', '#CCC')
+        .attr('fill', '#000') // state
         .attr('d', path(topojson.feature(us, us.objects.nation)));
 
     //eslint-disable-next-line
@@ -39,7 +39,8 @@ export default function Map({guesses = []}) {
     cityElements.append('g')
         .attr('transform', ({ lng, lat}) => `translate(${projection([lng,lat]).join(",")})`)
         .append('circle')
-        .attr('r', 3);
+        .attr('r', 3)
+        .attr('fill', 'red');
 
     //what actually renders the map onto the page
     useEffect(() => {
