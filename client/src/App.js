@@ -1,19 +1,20 @@
 // import CreateTable from "./CreateTable"
 import GuessList from "./GuessList"
 import Cities from "./city_data.json"
-import Map from "./Map"
+// import Map from "./Map"
 import React from "react"
 import Autocomplete from "./AutocompleteDropdown"
 // import "./App.css"
 import InfoPopUp from "./Info_PopUp"
 import Settings from "./Settings"
+import GenerateCity from "./GenerateCity"
 
 //this is how whatever the guess is can be exported to the GuessList file
 export var currentGuess;
 
 //for testing purposes, static target city of Boston until we create
 //logic to generate a target city
-export var targetCity = Cities.find(city => city.city === "Boston");
+export var targetCity = GenerateCity();
 
 //setter for the current guess
 export function setCurrentGuess(newCity){
