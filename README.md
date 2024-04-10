@@ -1,6 +1,7 @@
 # Link to Project: : https://djroos.com/ <br />
 
 # Running Instructions
+Install Node JS: https://nodejs.org/en <br>
 cd client <br />
 npm install <br />
 npm start <br />
