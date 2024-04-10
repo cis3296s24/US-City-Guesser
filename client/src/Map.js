@@ -19,13 +19,13 @@ export default function Map({guesses = []}) {
 
     //eslint-disable-next-line
     const statesBackground = svg.append('path')
-        .attr('fill', '#CCC')
+        .attr('fill', '#000') // state changes to black
         .attr('d', path(topojson.feature(us, us.objects.nation)));
 
     //eslint-disable-next-line
     const statesBoarders = svg.append('path')
         .attr('fill', 'none')
-        .attr('stroke', '#fff')
+        .attr('stroke', '#fff') // state line stays as white to visually see each state
         .attr('stroke-linejoin', 'round')
         .attr('stroke-linecap', 'round')
         .attr('d', path(topojson.mesh(us, us.objects.states, (a,b) => a !== b)));
@@ -39,7 +39,8 @@ export default function Map({guesses = []}) {
     cityElements.append('g')
         .attr('transform', ({ lng, lat}) => `translate(${projection([lng,lat]).join(",")})`)
         .append('circle')
-        .attr('r', 3);
+        .attr('r', 3)
+        .attr('fill', 'red'); // displays the red dot in a dark / black map
 
     //what actually renders the map onto the page
     useEffect(() => {
