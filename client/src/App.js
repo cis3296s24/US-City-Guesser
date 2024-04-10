@@ -1,20 +1,28 @@
 // import CreateTable from "./CreateTable"
 import GuessList from "./GuessList"
 import Cities from "./city_data.json"
+
 // import Map from "./Map"
 import React from "react"
+
 import Autocomplete from "./AutocompleteDropdown"
 // import "./App.css"
 import InfoPopUp from "./Info_PopUp"
 import Settings from "./Settings"
 import GenerateCity from "./GenerateCity"
 
+import { useState, useEffect } from "react";
+
+
 //this is how whatever the guess is can be exported to the GuessList file
 export var currentGuess;
 
 //for testing purposes, static target city of Boston until we create
 //logic to generate a target city
-export var targetCity = GenerateCity();
+
+//targetCity
+export var targetCity;
+
 
 //setter for the current guess
 export function setCurrentGuess(newCity){
@@ -25,14 +33,47 @@ export function getCurrentGuess(){
   return currentGuess;
 }
 
+function setRandomTargetCity(level) {
+  let filteredCities;
+  if (level === "easy") {
+    filteredCities = Cities.filter(city => city.population >= 1000000);
+  } else {
+    filteredCities = Cities.filter(city => city.population >= 100000);
+  }
+
+  const randomIndex = Math.floor(Math.random() * filteredCities.length);
+  console.log(filteredCities[randomIndex]); // Check answer
+  targetCity = filteredCities[randomIndex];
+}
+
 function App() {
 
-  //testing purposes, delete later
-  console.log(Cities[80])
-  console.log(Cities.find(city => city.city === "Philadelphia"))
+  const [level, setLevel] = useState("easy"); // Default level
+
+  useEffect(() => {
+    setRandomTargetCity(level);
+  }, [level]);
+
+  const handleLevelChange = (newLevel) => {
+    setLevel(newLevel);
+  };
 
   return (
     <div className="home">
+      <div>
+        <button 
+          onClick={() => handleLevelChange("easy")} 
+          style={{ marginRight: '10px', fontWeight: level === 'easy' ? 'bold' : 'normal' }}
+        >
+          Easy Mode
+        </button>
+        <button 
+          onClick={() => handleLevelChange("hard")} 
+          style={{ fontWeight: level === 'hard' ? 'bold' : 'normal' }}
+        >
+          Hard Mode
+        </button>
+      </div>
      
       {/* <CreateTable></CreateTable> This is just for testing purposes */}
 
@@ -59,9 +100,7 @@ function App() {
     
     <Settings />
     {/* <Map></Map> */}
-
     </div>
-
   )
 }
 
