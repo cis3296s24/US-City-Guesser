@@ -19,7 +19,7 @@ export default function Map({guesses = []}) {
 
     //eslint-disable-next-line
     const statesBackground = svg.append('path')
-        .attr('fill', '#ddd')
+        .attr('fill', '#CCC')
         .attr('d', path(topojson.feature(us, us.objects.nation)));
 
     //eslint-disable-next-line

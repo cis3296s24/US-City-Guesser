@@ -3,6 +3,8 @@ import { currentGuess, targetCity, getCurrentGuess } from "./App";
 import { getDistance } from "./calculateDistance";
 import Map from "./Map";
 
+import "./GuessList.css"
+
 //index for the array of guesses
 let nextId = 0;
 
@@ -26,7 +28,7 @@ export default function GuessList(){
   const [displayList, setDisplayList] = useState([]);
 
   return (
-    <div>
+    <div className="GuessList">
       {/* button to trigger guess */}
       <button onClick={function() {
 
