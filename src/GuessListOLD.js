@@ -1,9 +1,10 @@
 import React, { useState } from "react"
-import { currentGuess, targetCity, getCurrentGuess } from "./App";
+import { getTargetCity, getCurrentGuess } from "./App";
 import { getDistance } from "./calculateDistance";
 import Map from "./Map";
-
-import "./GuessList.css"
+import List from "./GuessList";
+import ValidateGuess from "./ValidateGuess";
+import "./style/GuessList.css";
 
 //index for the array of guesses
 let nextId = 0;
@@ -21,7 +22,7 @@ var guessList = [];
 
 export default function GuessList(){
 
-  //the sorted array uses the useState hook so it can be dynamically displayed
+  //the sorted array of Guesses (NOT cities) uses the useState hook so it can be dynamically displayed
   const [sorted, setSorted] = useState([]);
 
   // state array of cities (NOT guesses) that is sent to the map component
@@ -32,13 +33,8 @@ export default function GuessList(){
       {/* button to trigger guess */}
       <button onClick={function() {
 
-        if (getCurrentGuess() == null){
-          //nothing should happen if no city is entered
-          console.log("null");
-        } else if (guessList.some(e => e.city.id === currentGuess.id)) {
-          //nothing will happen if a city has already been guesses 
-          console.log("Already guessed that");
-        } else {
+        //calls validate to make sure current guess is valid
+        if (ValidateGuess(getCurrentGuess(), guessList)){
         
           //gets the current guess and assigns it to guess
           guess = getCurrentGuess();
@@ -47,7 +43,7 @@ export default function GuessList(){
           setDisplayList([...displayList, guess])
 
           //adds current guess to the guessList// guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.id, targetCity.id), state:guess.state_id }
-          guessList.push({ id: nextId++, city: guess, distance: getDistance(guess.id, targetCity.id)}
+          guessList.push({ id: nextId++, city: guess, distance: getDistance(guess.id, getTargetCity().id)}
           );
 
           // this sorts the array into a state array called "sorted" which is then what is displayed
@@ -62,16 +58,9 @@ export default function GuessList(){
 
       <Map guesses={displayList} /> 
 
-      <h2>Guesses:</h2>
+        {/* The actual list */}
 
-      {/* The actual list */}
-      <ul>
-        {sorted.map(guess => (
-          <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + guess.distance + " miles"}</li>
-        ))}
-      </ul>
-      
-      {/* the actual map */}
+      <List sorted = {sorted}/>
 
     </div>
   );

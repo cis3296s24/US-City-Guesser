@@ -1,4 +1,4 @@
-import Cities from "./city_data.json"
+import Cities from "./data/city_data.json"
 
 export function getDistance(cityID1, cityID2) {
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
-import us from "./states-albers-10m.json"
+import us from "./data/states-albers-10m.json"
 
 export default function Map({guesses = []}) {
 
@@ -19,7 +19,8 @@ export default function Map({guesses = []}) {
 
     //eslint-disable-next-line
     const statesBackground = svg.append('path')
-        .attr('fill', '#000') // state changes to black
+        .attr('fill', '#202124') // state changes to black
+        .attr('stroke', "white")
         .attr('d', path(topojson.feature(us, us.objects.nation)));
 
     //eslint-disable-next-line

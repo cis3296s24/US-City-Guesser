@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Cities from './city_data.json';
+import Cities from './data/city_data.json';
 import { setCurrentGuess } from './App';
 
 
-const Autocomplete = () => {
+const AutocompleteDropdown = () => {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -42,4 +42,4 @@ const Autocomplete = () => {
   );
 };
 
-export default Autocomplete;
+export default AutocompleteDropdown;
