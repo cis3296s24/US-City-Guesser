@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './InfoPopUp.css'; // Import CSS file for styling
+import './style/InfoPopUp.css'; // Import CSS file for styling
 
 function InfoPopUp() {
-  const [displayInfo, setDisplayInfo] = useState(false);
+  const [displayInfo, setDisplayInfo] = useState(true);
 
   const toggleInfo = () => {
     setDisplayInfo(!displayInfo);
