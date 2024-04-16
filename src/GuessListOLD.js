@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { getTargetCity, getCurrentGuess } from "./App";
 import { getDistance } from "./calculateDistance";
+import { getDistance2 } from "./milesToKm";
 import Map from "./Map";
 import List from "./GuessList";
 import ValidateGuess from "./ValidateGuess";
@@ -43,12 +44,16 @@ export default function GuessList(){
           setDisplayList([...displayList, guess])
 
           //adds current guess to the guessList// guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.id, targetCity.id), state:guess.state_id }
-          guessList.push({ id: nextId++, city: guess, distance: getDistance(guess.id, getTargetCity().id)}
+          guessList.push({ id: nextId++, city: guess, distance: getDistance(guess.id, targetCity.id), distance2: getDistance2(guess.id, targetCity.id)}
           );
 
           // this sorts the array into a state array called "sorted" which is then what is displayed
           setSorted([...guessList].sort((a, b) => {
             return a.distance - b.distance;
+          }))
+
+          setSorted([...guessList].sort((a, b) => {
+            return a.distance2 - b.distance2;
           }))
           
         }
@@ -59,6 +64,12 @@ export default function GuessList(){
       <Map guesses={displayList} /> 
 
         {/* The actual list */}
+
+      <ul>
+        {sorted.map(guess => (
+          <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + guess.distance + " miles / " + guess.distance2 + " kilometers"}</li>
+        ))}
+      </ul>
 
       <List sorted = {sorted}/>
 

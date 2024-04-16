@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Map from "./Map"
 import GuessList from "./GuessList"
 import { getDistance } from "./calculateDistance"
+import { getDistance2 } from "./milesToKm"
 import "./style/App.css"
 import "./style/GuessList.css"
 
@@ -104,12 +105,16 @@ function App() {
           setDisplayList([...displayList, currentGuess])
 
           //adds current guess to the guessList// guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.id, targetCity.id), state:guess.state_id }
-          guessList.push({ id: nextId++, city: currentGuess, distance: getDistance(currentGuess.id, targetCity.id)}
+          guessList.push({ id: nextId++, city: currentGuess, distance: getDistance(currentGuess.id, targetCity.id), distance2: getDistance2(currentGuess.id, targetCity.id)}
           );
 
           // this sorts the array into a state array called "sorted" which is then what is displayed
           setSorted([...guessList].sort((a, b) => {
             return a.distance - b.distance;
+          }))
+
+          setSorted([...guessList].sort((a, b) => {
+            return a.distance2 - b.distance2;
           }))
  
         }
