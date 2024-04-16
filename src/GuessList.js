@@ -3,6 +3,7 @@
 export default function GuessList({sorted}){
   return (
     <div>
+
       <div style={{ textAlign: 'center' }}>
         <h2 style={{ marginBottom: '20px' }}>Guesses:</h2>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
@@ -16,6 +17,7 @@ export default function GuessList({sorted}){
           ))}
           </ul> 
       </div>
+
     </div>
   )
 }
