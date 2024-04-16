@@ -13,7 +13,7 @@ export default function GuessList({sorted}){
         <ul className="GuessList">
         {/* The actual list */}
           {sorted.map(guess => (
-            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + guess.distance + " miles"}</li>
+            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + guess.distance + " miles / " + guess.distance2 + " kilometers"}</li>
           ))}
           </ul> 
       </div>
