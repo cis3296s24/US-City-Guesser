@@ -119,7 +119,7 @@ function App() {
  
         }
 
-      }}>Submit Guess</button>
+      }}button className="submit-button">Submit Guess</button>
 
       {/* the list of guesses which updates dynamically */}
       <GuessList sorted = {sorted}/>

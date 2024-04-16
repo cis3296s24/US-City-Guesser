@@ -1,0 +1,42 @@
+.autocomplete {
+    position: relative;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color:rgb(32, 33, 36);; /* Update background color to black */
+    color: #fff; /* Set text color to white */
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: calc(100% - 2px); /* Adjusting for border width */
+    max-height: 200px;
+    overflow-y: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .suggestions li:hover {
+    background-color: #CCCC;
+  }
+  
