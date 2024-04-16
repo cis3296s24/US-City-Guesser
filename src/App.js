@@ -64,6 +64,24 @@ function App() {
 
   const firstRender = useRef(true);
 
+  const resetGuesses = () => {
+    setDisplayList([]);
+    setSorted([]);
+    guessList = [];
+    GenerateCity(difficulty);
+  };
+  
+  // Set diffiulty and reset guesses
+  const setEasy = () => {
+    setDifficulty("easy");
+    resetGuesses();
+  };
+  
+  const setHard = () => {
+    setDifficulty("hard");
+    resetGuesses();
+  };
+
   //useEffect for difficulty level
   useEffect(() => {
     GenerateCity(difficulty);
@@ -130,12 +148,11 @@ function App() {
     <InfoPopUp />
 
     {/* Component for a popup that displays settings*/}
-    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} />
+    <Settings difficulty={difficulty} setEasy={setEasy} setHard={setHard} />
     
     {/* useRef div for scrolling */}
     <div ref = {bottomRef}></div>
     </div>
-
     
   )
 }
