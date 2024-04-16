@@ -153,7 +153,6 @@ function App() {
     {/* useRef div for scrolling */}
     <div ref = {bottomRef}></div>
     </div>
-
     
   )
 }
