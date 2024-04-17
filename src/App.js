@@ -11,6 +11,8 @@ import { getDistance } from "./calculateDistance"
 import { getDistance2 } from "./milesToKm"
 import "./style/App.css"
 import "./style/GuessList.css"
+import GameCompletePopup from "./GameCompletePopup"
+import GiveUpPopup from "./GiveUpPopup"
 
 // -------------- Variables ----------------- \\
 
@@ -36,6 +38,8 @@ export function getCurrentGuess(){
   return currentGuess;
 }
 
+
+
 //index for the array of guesses
 let nextId = 0;
 
@@ -47,6 +51,9 @@ let nextId = 0;
 //i think this the better way to do this so it's only calculating each distance once
 var guessList = [];
 
+function clearGuessList(){
+  guessList = [];
+}
 
 // ----------------------------------------------- \\
 
@@ -54,10 +61,20 @@ function App() {
 
   // state variable for difficulty level
   const [difficulty, setDifficulty] = useState("easy")
+  
   //the sorted array of Guesses (NOT cities) uses the useState hook so it can be dynamically displayed
   const [sorted, setSorted] = useState([]);
+
   // state array of cities (NOT guesses) that is sent to the map component
   const [displayList, setDisplayList] = useState([]);
+
+  //state variable for "game state": 
+  // - "game" when game is running
+  // - "quit" when giving up
+  // - "completed" when won
+  const [gameState, setGameState] = useState("game");
+
+  const [km, setKm] = useState(false);
 
   //useRef element for scrolling when entering new value
   const bottomRef = useRef(null);
@@ -79,21 +96,22 @@ function App() {
     
   }, [sorted]);
 
+  function restartGame(){
+    setCurrentGuess(null);
+    clearGuessList();
+    GenerateCity(difficulty);
+    setDisplayList([]);
+    setSorted([]);
+    setGameState("game");
+  }
+
   return (
 
     <div className="home">
 
       <h1>US City Guesser</h1>
 
-      {/* map component takes in list of guessed cities to project dots */}
-      <Map guesses={displayList} /> 
-
-      Click on guess <br />
-
-      {/* Component to handle guesses (dropdown that you click, not type and enter) */}
-      <AutocompleteDropdown />
-
-    <div className="GuessList">
+      <AutocompleteDropdown className = "drop"/>
 
       {/* button to trigger guess */}
       <button onClick={function() {
@@ -116,21 +134,40 @@ function App() {
           setSorted([...guessList].sort((a, b) => {
             return a.distance2 - b.distance2;
           }))
+
+          if (currentGuess.id === targetCity.id){
+            setGameState("completed");
+          }
  
         }
 
-      }}button className="submit-button">Submit Guess</button>
+      }} className="submit-button">Submit Guess</button>
 
-      {/* the list of guesses which updates dynamically */}
-      <GuessList sorted = {sorted}/>
+      
 
-    </div>
+    {/* map component takes in list of guessed cities to project dots */}
+    <Map guesses={displayList} /> 
 
+    <button className = "submit-button" onClick={function(){setGameState("quit")}}>Give up</button>
+
+    <div className="GuessList">
+        {/* the list of guesses which updates dynamically */}
+        <GuessList km = {km} sorted = {sorted}/>
+
+      </div>
+
+    {/* Component to handle guesses (dropdown that you click, not type and enter) */}
+      
+
+    {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} />}
+    {gameState === "quit" && <GiveUpPopup restart={() => restartGame()} />}
+
+    
     {/* Component for a popup that displays info*/}
     <InfoPopUp />
 
     {/* Component for a popup that displays settings*/}
-    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} />
+    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} isKm = {km} changeToKm = {() => setKm(true)} changeToMiles = {() => setKm(false)} />
     
     {/* useRef div for scrolling */}
     <div ref = {bottomRef}></div>

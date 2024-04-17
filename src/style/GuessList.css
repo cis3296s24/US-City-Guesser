@@ -7,7 +7,7 @@
 }
 
 .GuessList li {
-  margin-bottom: 10px; 
+  margin-bottom: 5px; 
   font-size: 16px; 
   line-height: 1.5; 
 }
@@ -15,7 +15,8 @@
 .GuessList-container {
   border: 1px solid #fff; 
   border-radius: 5px; 
-  padding: 10px; 
+  padding-left: 10px; 
+  padding-right: 10px;
   max-height: 150px; 
   overflow-y: auto; 
 }
