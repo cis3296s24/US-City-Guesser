@@ -40,7 +40,7 @@ export default function Map({guesses = []}) {
     cityElements.append('g')
         .attr('transform', ({ lng, lat}) => `translate(${projection([lng,lat]).join(",")})`)
         .append('circle')
-        .attr('r', 3)
+        .attr('r', 4)
         .attr('fill', 'red'); // displays the red dot in a dark / black map
 
     //what actually renders the map onto the page

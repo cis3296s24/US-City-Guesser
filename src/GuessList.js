@@ -1,6 +1,6 @@
 //This component renders the list of already-guessed cities
 
-export default function GuessList({sorted}){
+export default function GuessList({sorted, km}){
   return (
     <div>
 
@@ -13,7 +13,7 @@ export default function GuessList({sorted}){
         <ul className="GuessList">
         {/* The actual list */}
           {sorted.map(guess => (
-            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + guess.distance + " miles"}</li>
+            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + (!km ? guess.distance + " miles" : Math.round(guess.distance * 1.6) + " km")}</li>
           ))}
           </ul> 
       </div>
