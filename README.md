@@ -2,7 +2,7 @@
 
 # Running Instructions
 Install Node JS: https://nodejs.org/en <br>
-cd client <br />
+In root directory:<br>
 npm install <br />
 npm start <br />
 
