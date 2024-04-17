@@ -3,14 +3,14 @@
 export default function ValidateGuess(guess, guessList){
   if (guess == null){
     //nothing should happen if no city is entered
-    console.log("null");
+    // console.log("null");
     return false;
   } else if (guessList.some(e => e.city.id === guess.id)) {
     //nothing will happen if a city has already been guesses 
-    console.log("Already guessed that");
+    // console.log("Already guessed that");
     return false
   } else {
-    console.log("You're good to go");
+    // console.log("You're good to go");
     return true;
   }
 }

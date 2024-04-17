@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import Map from "./Map"
 import GuessList from "./GuessList"
 import { getDistance } from "./calculateDistance"
-import { getDistance2 } from "./milesToKm"
+import Cities from "./data/city_data.json"
 import "./style/App.css"
 import "./style/GuessList.css"
 import GameCompletePopup from "./GameCompletePopup"
@@ -50,6 +50,7 @@ let nextId = 0;
 //         distance:
 //i think this the better way to do this so it's only calculating each distance once
 var guessList = [];
+
 
 function clearGuessList(){
   guessList = [];
@@ -123,7 +124,7 @@ function App() {
           setDisplayList([...displayList, currentGuess])
 
           //adds current guess to the guessList// guessList.push({ id: nextId++, city: guess.city, distance: getDistance(guess.id, targetCity.id), state:guess.state_id }
-          guessList.push({ id: nextId++, city: currentGuess, distance: getDistance(currentGuess.id, targetCity.id), distance2: getDistance2(currentGuess.id, targetCity.id)}
+          guessList.push({ id: nextId++, city: currentGuess, distance: getDistance(currentGuess.id, targetCity.id)}
           );
 
           // this sorts the array into a state array called "sorted" which is then what is displayed
@@ -141,14 +142,14 @@ function App() {
  
         }
 
-      }} className="submit-button">Submit Guess</button>
+      }} id = "submit_button" className="submit-button">Submit Guess</button>
 
       
 
     {/* map component takes in list of guessed cities to project dots */}
     <Map guesses={displayList} /> 
 
-    <button className = "submit-button" onClick={function(){setGameState("quit")}}>Give up</button>
+    <button data-testid = "give_up_button" className = "submit-button" onClick={function(){setGameState("quit")}}>Give up</button>
 
     <div className="GuessList">
         {/* the list of guesses which updates dynamically */}

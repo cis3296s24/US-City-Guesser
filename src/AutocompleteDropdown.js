@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Cities from './data/city_data.json';
 import { setCurrentGuess } from './App';
-import "./style/Autocomplete.css";
+import './style/Autocomplete.css';
 
 
 const AutocompleteDropdown = () => {
