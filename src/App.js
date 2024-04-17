@@ -161,10 +161,6 @@ function App() {
             return a.distance - b.distance;
           }))
 
-          setSorted([...guessList].sort((a, b) => {
-            return a.distance2 - b.distance2;
-          }))
-
           if (currentGuess.id === targetCity.id){
             setGameState("completed");
           }
