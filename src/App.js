@@ -75,7 +75,8 @@ function App() {
 
   const [km, setKm] = useState(false);
 
-  const [isDark, setIsDark] = useState(true); // State to track map display mode
+  const [isDark, setIsDark] = useState(false); // State to track map display mode
+  
 
   //useRef element for scrolling when entering new value
   const bottomRef = useRef(null);
@@ -172,7 +173,7 @@ function App() {
       
 
     {/* map component takes in list of guessed cities to project dots */}
-    <Map guesses={displayList} /> 
+    <Map guesses={displayList} isDark={isDark} /> 
 
     <button data-testid = "give_up_button" className = "submit-button" onClick={function(){setGameState("quit")}}>Give up</button>
 
@@ -196,7 +197,16 @@ function App() {
 
     {/* Component for a popup that displays settings*/}
 
-    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} isKm = {km} changeToKm = {() => setKm(true)} changeToMiles = {() => setKm(false)} mapDisplay = {isDark} setDark={() => setIsDark("#ffffff")} setLight = {() => setIsDark("202124")}/>
+    <Settings 
+    difficulty = {difficulty} 
+    setEasy={() => setDifficulty("easy")} 
+    setHard = {() => setDifficulty("hard")} 
+    isKm = {km} 
+    changeToKm = {() => setKm(true)} 
+    changeToMiles = {() => setKm(false)} 
+    isDark = {isDark} 
+    setDark={() => setIsDark(true)} 
+    setLight = {() => setIsDark(false)}/>
 
     
     {/* useRef div for scrolling */}
