@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import Map from "./Map"
 import GuessList from "./GuessList"
 import { getDistance } from "./calculateDistance"
-import Cities from "./data/city_data.json"
 import "./style/App.css"
 import "./style/GuessList.css"
 import GameCompletePopup from "./GameCompletePopup"
@@ -75,32 +74,25 @@ function App() {
 
   const [km, setKm] = useState(false);
 
-  const [isDark, setIsDark] = useState(false); // State to track map display mode
+  const [isDark, setIsDark] = useState(true); // State to track map display mode
   
 
   //useRef element for scrolling when entering new value
   const bottomRef = useRef(null);
 
   const firstRender = useRef(true);
-
-  const resetGuesses = () => {
-    setDisplayList([]);
-    setSorted([]);
-    guessList = [];
-    GenerateCity(difficulty);
-  };
   
   // Set difficulty level: easy & reset guesses
-  const setEasy = () => {
-    setDifficulty("easy");
-    resetGuesses();
-  };
-  
-  // Set difficulty level: hard & reset guesses
-  const setHard = () => {
+ 
+  function setHard () {
     setDifficulty("hard");
-    resetGuesses();
-  };
+    restartGame();
+  }
+
+  function setEasy () {
+    setDifficulty("easy");
+    restartGame();
+  }
 
   //useEffect for difficulty level
   useEffect(() => {
@@ -125,16 +117,6 @@ function App() {
     setSorted([]);
     setGameState("game");
   }
-
-   // Set it in dark/black mode
-  const setDark = () => {
-    setIsDark("black");
-  };
-
-  // Set it in light/white mode
-  const setLight = () => {
-    setDark("white");
-  };
 
   return (
 
@@ -199,8 +181,8 @@ function App() {
 
     <Settings 
     difficulty = {difficulty} 
-    setEasy={() => setDifficulty("easy")} 
-    setHard = {() => setDifficulty("hard")} 
+    setEasy={setEasy} 
+    setHard = {setHard} 
     isKm = {km} 
     changeToKm = {() => setKm(true)} 
     changeToMiles = {() => setKm(false)} 

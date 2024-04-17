@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import us from "./data/states-albers-10m.json";
-import Settings from './Settings';
 
 export default function Map({ guesses = [], isDark }) {
     
@@ -19,11 +18,13 @@ export default function Map({ guesses = [], isDark }) {
         const fill = isDark ? '#202124' : '#ffffff'; // Set fill color based on dark mode
         const stroke = isDark ? 'white' : 'black'; // Set stroke color based on dark mode
 
+        // eslint-disable-next-line 
         const statesBackground = svg.append('path')
             .attr('fill', fill)
             .attr('stroke', stroke)
             .attr('d', path(topojson.feature(us, us.objects.nation)));
 
+        // eslint-disable-next-line 
         const statesBorders = svg.append('path')
             .attr('fill', 'none')
             .attr('stroke', stroke)
