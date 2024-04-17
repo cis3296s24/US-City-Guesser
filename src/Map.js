@@ -4,8 +4,8 @@ import * as topojson from 'topojson-client';
 import us from "./data/states-albers-10m.json";
 import Settings from './Settings';
 
-export default function Map({ guesses = [] }) {
-    const [isDark, setIsDark] = useState(true); // Initialize dark mode as true
+export default function Map({ guesses = [], isDark }) {
+    
 
     useEffect(() => {
         const height = 610;
@@ -51,33 +51,10 @@ export default function Map({ guesses = [] }) {
         element.appendChild(div);
     }, [guesses, isDark]);
 
-    // Function to set dark mode
-    const setDark = () => {
-        setIsDark(true);
-    };
-
-    // Function to set light mode
-    const setLight = () => {
-        setIsDark(false);
-    };
-
     return (
         <div>
             <div>
                 {/* Button for dark mode */}
-                <button
-                    onClick={setDark}
-                    style={{ marginRight: '10px', fontWeight: isDark ? 'bold' : 'normal' }}
-                >
-                    Dark
-                </button>
-                {/* Button for light mode */}
-                <button
-                    onClick={setLight}
-                    style={{ fontWeight: isDark ? 'normal' : 'bold' }}
-                >
-                    Light
-                </button>
             </div>
             <div id={'map'}></div>
         </div>
