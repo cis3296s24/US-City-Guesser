@@ -22,11 +22,11 @@ export function getDistance(cityID1, cityID2) {
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         const distance = R * c; // Distance in miles
-        console.log("Distance between two cities in miles => ", distance.toFixed(2));
+        // console.log("Distance between two cities in miles => ", distance.toFixed(2));
         return Math.round(distance);
 
     } catch (error) {
-        console.error('Error parsing JSON:', error);
+        // console.error('Error parsing JSON:', error);
     }
 }
 
@@ -36,7 +36,7 @@ function getLatitude(cityID, Cities) {
         const { lat: latitude } = city;
         return latitude;
     } else {
-        console.log(`City '${cityID}' not found`);
+        // console.log(`City '${cityID}' not found`);
         return null;
     }
 }
@@ -47,7 +47,7 @@ function getLongitude(cityID, Cities) {
         const { lng: longitude } = city;
         return longitude;
     } else {
-        console.log(`City '${cityID}' not found`)
+        // console.log(`City '${cityID}' not found`)
         return null; 
     }
 }
