@@ -70,11 +70,11 @@ function App() {
 
   //state variable for "game state": 
   // - "game" when game is running
-  // - "quit" when giving up
-  // - "completed" when won
   const [gameState, setGameState] = useState("game");
 
   const [km, setKm] = useState(false);
+
+  const [isDark, setIsDark] = useState(true); // State to track map display mode
 
   //useRef element for scrolling when entering new value
   const bottomRef = useRef(null);
@@ -88,12 +88,13 @@ function App() {
     GenerateCity(difficulty);
   };
   
-  // Set diffiulty and reset guesses
+  // Set difficulty level: easy & reset guesses
   const setEasy = () => {
     setDifficulty("easy");
     resetGuesses();
   };
   
+  // Set difficulty level: hard & reset guesses
   const setHard = () => {
     setDifficulty("hard");
     resetGuesses();
@@ -122,6 +123,16 @@ function App() {
     setSorted([]);
     setGameState("game");
   }
+
+   // Set it in dark/black mode
+  const setDark = () => {
+    setIsDark("black");
+  };
+
+  // Set it in light/white mode
+  const setLight = () => {
+    setDark("white");
+  };
 
   return (
 
@@ -176,8 +187,10 @@ function App() {
 
     {/* Component to handle guesses (dropdown that you click, not type and enter) */}
       
-
+    {/* "completed" when won & hit 0 miles/km */}
     {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} />}
+    
+    {/* "quit" when giving up */}
     {gameState === "quit" && <GiveUpPopup restart={() => restartGame()} />}
 
     
@@ -186,7 +199,7 @@ function App() {
 
     {/* Component for a popup that displays settings*/}
 
-    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} isKm = {km} changeToKm = {() => setKm(true)} changeToMiles = {() => setKm(false)} />
+    <Settings difficulty = {difficulty} setEasy={() => setDifficulty("easy")} setHard = {() => setDifficulty("hard")} isKm = {km} changeToKm = {() => setKm(true)} changeToMiles = {() => setKm(false)} mapDisplay = {isDark} setDark={() => setIsDark("#ffffff")} setLight = {() => setIsDark("202124")}/>
 
     
     {/* useRef div for scrolling */}
