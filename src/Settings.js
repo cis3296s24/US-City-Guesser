@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './style/Settings.css'; // Import CSS file for styling
-import Map from './Map'
 // import { getDifficulty, setDifficulty } from './App';
 
 //called with the current level, and is passed useState functions which I define as 
