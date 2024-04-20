@@ -65,3 +65,20 @@
 .open-button:hover {
   background-color: #CCCC;
 }
+
+/* .circle-container {
+  display: flex;
+  align-items: center;
+}
+
+.small-box {
+  width: 15px;
+  height: 15px;
+  background-color: #caa4a751;
+  border-radius: 50%;
+}
+
+.circle-text {
+  margin-left: 10px; 
+} */
+

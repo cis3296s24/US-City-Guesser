@@ -13,6 +13,7 @@ import "./style/App.css"
 import "./style/GuessList.css"
 import GameCompletePopup from "./GameCompletePopup"
 import GiveUpPopup from "./GiveUpPopup"
+import Confetti from './Confetti';
 
 // -------------- Variables ----------------- \\
 
@@ -185,7 +186,8 @@ function App() {
     {/* Component to handle guesses (dropdown that you click, not type and enter) */}
       
     {/* "completed" when won & hit 0 miles/km */}
-    {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} />}
+    {gameState === "completed"&&<GameCompletePopup restart={() => restartGame()} />}
+    {gameState === "completed" && <Confetti />}
     
     {/* "quit" when giving up */}
     {gameState === "quit" && <GiveUpPopup restart={() => restartGame()} />}
