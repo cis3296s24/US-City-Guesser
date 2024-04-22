@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "canvas-confetti": "^1.9.2",
     "d3": "^7.9.0",
     "eslint": "^8.57.0",
     "react": "^18.2.0",
@@ -50,7 +51,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "moduleNameMapper":{
+    "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
     "transformIgnorePatterns": [
