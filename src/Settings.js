@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import './style/Settings.css'; // Import CSS file for styling
-import Map from './Map'
 // import { getDifficulty, setDifficulty } from './App';
 
 //called with the current level, and is passed useState functions which I define as 
 //"setEasy" and "setHard". This is known as "lifting up the state"
-function Settings({ difficulty, setEasy, setHard, isKm, changeToMiles, changeToKm, mapDisplay}) {
+function Settings({ difficulty, setEasy, setHard, isKm, changeToMiles, changeToKm, isDark, setDark, setLight}) {
   const [displaySettings, setDisplaySettings] = useState(false);
-  const [isDark, setIsDark] = useState(true);
 
   //function for displaying Settings 
   const toggleSettings = () => {
@@ -17,16 +15,6 @@ function Settings({ difficulty, setEasy, setHard, isKm, changeToMiles, changeToK
   //function for closing settings popup
   const closeSettings = () => {
     setDisplaySettings(false);
-  };
-
-  // Function to set dark mode
-  const setDark = () => {
-    setIsDark(false);
-  };
-
-  // Function to set light mode
-  const setLight = () => {
-    setIsDark(true);
   };
 
   return (
@@ -88,7 +76,7 @@ function Settings({ difficulty, setEasy, setHard, isKm, changeToMiles, changeToK
                     onClick={setDark}
                     style={{ 
                       marginRight: '10px', 
-                      fontWeight: isDark ? 'normal' : 'bold', 
+                      fontWeight: !isDark ? 'normal' : 'bold', 
                     }}
                 >
                     Dark
@@ -97,7 +85,7 @@ function Settings({ difficulty, setEasy, setHard, isKm, changeToMiles, changeToK
                 <button
                     onClick={setLight}
                     style={{ 
-                      fontWeight: isDark ? 'bold' : 'normal' 
+                      fontWeight: !isDark ? 'bold' : 'normal' 
                     }}
                 >
                     Light

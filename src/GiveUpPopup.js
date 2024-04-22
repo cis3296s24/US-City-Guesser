@@ -19,9 +19,9 @@ export default function GiveUpPopup({restart}) {
       <button className="open-button" onClick={toggleInfo}>Info</button>
       {displayInfo && (
         <div>
-          <div className="overlay" onClick={closeInfo}></div>
+          <div className="overlay" onClick={function() {restart(); closeInfo()}}></div>
           <div className="info-popup">
-            <button onClick={closeInfo} className="close-button">Close</button>
+            <button onClick={function() {restart(); closeInfo()}} className="close-button">Close</button>
             <h2>Better luck next time.</h2>
             <h3>Correct answer was {getTargetCity().city}, {getTargetCity().state_id}</h3>
             <button onClick={function() {restart(); closeInfo()}}>Restart</button>

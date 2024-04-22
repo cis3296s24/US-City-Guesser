@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import us from "./data/states-albers-10m.json";
@@ -7,9 +7,8 @@ import { getDistance } from './calculateDistance';
 import { getCurrentGuess, getTargetCity } from './App';
 import Cities from "./data/city_data.json";
 
-
-export default function Map({ guesses = [] }) {
-    const [isDark, setIsDark] = useState(true); // Initialize dark mode as true
+export default function Map({ guesses = [], isDark }) {
+    
 
     useEffect(() => {
         const height = 610;
@@ -23,11 +22,13 @@ export default function Map({ guesses = [] }) {
         const fill = isDark ? '#202124' : '#ffffff'; // Set fill color based on dark mode
         const stroke = isDark ? 'white' : 'black'; // Set stroke color based on dark mode
 
+        // eslint-disable-next-line 
         const statesBackground = svg.append('path')
             .attr('fill', fill)
             .attr('stroke', stroke)
             .attr('d', path(topojson.feature(us, us.objects.nation)));
 
+        // eslint-disable-next-line 
         const statesBorders = svg.append('path')
             .attr('fill', 'none')
             .attr('stroke', stroke)
@@ -81,33 +82,10 @@ export default function Map({ guesses = [] }) {
         element.appendChild(div);
     }, [guesses, isDark]);
 
-    // Function to set dark mode
-    const setDark = () => {
-        setIsDark(true);
-    };
-
-    // Function to set light mode
-    const setLight = () => {
-        setIsDark(false);
-    };
-
     return (
         <div>
             <div>
                 {/* Button for dark mode */}
-                <button
-                    onClick={setDark}
-                    style={{ marginRight: '10px', fontWeight: isDark ? 'bold' : 'normal' }}
-                >
-                    Dark
-                </button>
-                {/* Button for light mode */}
-                <button
-                    onClick={setLight}
-                    style={{ fontWeight: isDark ? 'normal' : 'bold' }}
-                >
-                    Light
-                </button>
             </div>
             <div id={'map'}></div>
         </div>
