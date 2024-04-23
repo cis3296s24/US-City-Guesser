@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './style/InfoPopUp.css'; // Import CSS file for styling
+// import infoImage from './Color_Guide.png'; // Import image
+// import infoImage2 from './Color_Guide2.png'; // Import image
 
 function InfoPopUp() {
   const [displayInfo, setDisplayInfo] = useState(true);
@@ -26,6 +28,12 @@ function InfoPopUp() {
             <p>After completeing the game, click "restart" to play again!</p>
             <p>Click on the settings button to adjust difficulty, units, and visual display options.</p>
             <p>Data retrieved from: https://simplemaps.com/data/us-cities</p>
+
+            {/* <h3>Color Guide for Dots shown on map</h3>
+            <p>Depending on light/dark mode preference the first image is </p>
+            <img src={infoImage} alt="Color Description" style={{ width: '300px', height: '300px' }} />
+            <img src={infoImage2} alt="Color Description" style={{ width: '300px', height: '300px' }} /> */}
+
           </div>
         </div>
       )}

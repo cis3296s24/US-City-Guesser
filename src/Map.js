@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import us from "./data/states-albers-10m.json";
+import Settings from './Settings';
+import { getDistance } from './calculateDistance';
+import { getCurrentGuess, getTargetCity } from './App';
+import Cities from "./data/city_data.json";
 
 export default function Map({ guesses = [], isDark }) {
     
@@ -37,11 +41,38 @@ export default function Map({ guesses = [], isDark }) {
             .join('g');
 
         cityElements.append('g')
-            .attr('transform', ({ lng, lat }) => `translate(${projection([lng, lat]).join(",")})`)
-            .append('circle')
-            .attr('r', 4)
-            .attr('fill', 'red')
-            .attr('stroke', stroke);
+
+        .attr('transform', ({ lng, lat }) => `translate(${projection([lng, lat]).join(",")})`)
+        .append('circle')
+        .attr('r', 7)
+        .attr('stroke', 'white')
+        .attr('stroke-width', 2)
+        .attr('fill', ({ id }) => {
+            const currentGuess = id;
+            const targetCity = getTargetCity().id;
+            const distance = getDistance(currentGuess, targetCity);
+            
+            // Adjusted comparison ranges to ensure correct color assignment
+            if (distance > 1000) {
+                return '#E0E0E0';
+            } else if (distance <= 1000 && distance > 750) {
+                return '#F8D1CD';
+            } else if (distance <= 750 && distance > 500) {
+                return '#F0A8AB';
+            } else if (distance <= 500 && distance > 250) {
+                return '#E97E88';
+            } else if (distance <= 250 && distance > 100) {
+                return '#DC1840';
+            }
+            else if(distance==0) {
+                return'green';
+            }
+            else if(distance<100){
+                return 'red';
+            }
+            
+        });
+
 
         const element = document.getElementById("map");
         while (element.firstChild) {

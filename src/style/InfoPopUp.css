@@ -84,6 +84,7 @@
   background-color: #CCCC;
 }
 
+
 .info-popup .non-close {
   background-color: white;
   color: black; 
@@ -96,3 +97,21 @@
   box-sizing: border-box; 
   margin-top: 15px;
 }
+
+/* .circle-container {
+  display: flex;
+  align-items: center;
+}
+
+.small-box {
+  width: 15px;
+  height: 15px;
+  background-color: #caa4a751;
+  border-radius: 50%;
+}
+
+.circle-text {
+  margin-left: 10px; 
+} */
+
+
