@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import us from "./data/states-albers-10m.json";
-import Settings from './Settings';
 import { getDistance } from './calculateDistance';
-import { getCurrentGuess, getTargetCity } from './App';
-import Cities from "./data/city_data.json";
+import { getTargetCity } from './App';
 
 export default function Map({ guesses = [], isDark }) {
     
@@ -64,7 +62,7 @@ export default function Map({ guesses = [], isDark }) {
             } else if (distance <= 250 && distance > 100) {
                 return '#DC1840';
             }
-            else if(distance==0) {
+            else if(distance === 0) {
                 return'green';
             }
             else if(distance<100){

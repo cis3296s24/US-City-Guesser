@@ -195,7 +195,7 @@ export default function App() {
       
     {/* "completed" when won & hit 0 miles/km */}
 
-    {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} guesses={nextId + 1} difficulty={difficulty}/>}
+    {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} guesses={nextId} difficulty={difficulty}/>}
 
     {/* "confirm" when confiming whether or not the user wants to quit */}
     {gameState === "confirm" && <ConfirmGiveUp confirm={() => setGameState("quit")} undo={() => setGameState("game")} />}
