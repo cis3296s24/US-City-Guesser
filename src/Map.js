@@ -43,7 +43,7 @@ export default function Map({ guesses = [], isDark }) {
         .attr('transform', ({ lng, lat }) => `translate(${projection([lng, lat]).join(",")})`)
         .append('circle')
         .attr('r', 7)
-        .attr('stroke', 'white')
+        .attr('stroke', 'yellow')
         .attr('stroke-width', 2)
         .attr('fill', ({ id }) => {
             const currentGuess = id;

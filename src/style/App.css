@@ -28,3 +28,12 @@
 .submit-button:hover {
   background-color: #CCCC; 
 }
+dark-mode {
+  background-color: #222; 
+  color: #fff;
+}
+
+.light-mode {
+  background-color: #fff; 
+  color: #000; 
+}

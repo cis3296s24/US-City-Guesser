@@ -3,8 +3,8 @@ import confetti from 'canvas-confetti';
 
 const Confetti = () => {
   useEffect(() => {
-    const end = Date.now() + (15 * 1000);
-    const colors = ['#bb0000', '#ffffff'];
+    const end = Date.now() + (4 * 1000);
+    const colors = ['#FFFF00.', '#FF0000'];
 
     (function frame() {
       confetti({
@@ -28,7 +28,7 @@ const Confetti = () => {
     })();
   }, []);
 
-  return null; // Since this component doesn't render anything
+  return null; 
 };
 
 export default Confetti;
