@@ -13,7 +13,7 @@ const AutocompleteDropdown = () => {
     setInput(value);
     if (value.length > 0) {
       const regex = new RegExp(`${value}`, 'i');
-      setSuggestions(Cities.sort().filter(v => regex.test(v.city)));
+      setSuggestions(Cities.sort().filter(v => regex.test(v.city) || regex.test(v.state_id)));
     } else {
       setSuggestions([]);
     }
