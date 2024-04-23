@@ -138,7 +138,7 @@ export default function App() {
 
   return (
 
-    <div className="home">
+    <div className={`home ${isDark ? 'dark-mode' : 'light-mode'}`}>
 
       <h1>US City Guesser</h1>
 
