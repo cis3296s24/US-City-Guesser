@@ -13,7 +13,7 @@ export default function GuessList({sorted, km}){
         <ul className="GuessList">
         {/* The actual list */}
           {sorted.map(guess => (
-            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + (!km ? guess.distance + " miles" : Math.round(guess.distance * 1.6) + " km")}</li>
+            <li key={guess.id}>{guess.city.city + ", " + guess.city.state_id + ": " + (!km ? guess.distance + " miles" : Math.round(guess.distance * 1.609344) + " km")}</li>
           ))}
           </ul> 
       </div>

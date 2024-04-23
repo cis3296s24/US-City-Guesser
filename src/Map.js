@@ -41,6 +41,7 @@ export default function Map({ guesses = [], isDark }) {
             .join('g');
 
         cityElements.append('g')
+
         .attr('transform', ({ lng, lat }) => `translate(${projection([lng, lat]).join(",")})`)
         .append('circle')
         .attr('r', 7)
@@ -71,6 +72,7 @@ export default function Map({ guesses = [], isDark }) {
             }
             
         });
+
 
         const element = document.getElementById("map");
         while (element.firstChild) {

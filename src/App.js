@@ -12,7 +12,9 @@ import "./style/App.css"
 import "./style/GuessList.css"
 import GameCompletePopup from "./GameCompletePopup"
 import GiveUpPopup from "./GiveUpPopup"
+import ConfirmGiveUp from "./ConfirmGiveUp"
 import Confetti from './Confetti';
+
 
 // -------------- Variables ----------------- \\
 
@@ -38,9 +40,7 @@ export function getCurrentGuess(){
   return currentGuess;
 }
 
-
-
-//index for the array of guesses
+//index for the array of guesses, also functions as way to track number of guesses
 let nextId = 0;
 
 //array for guesses - guesses are NOT the same as cities
@@ -51,14 +51,14 @@ let nextId = 0;
 //i think this the better way to do this so it's only calculating each distance once
 var guessList = [];
 
-
+//function to clear guesslist when resetting game
 function clearGuessList(){
   guessList = [];
 }
 
 // ----------------------------------------------- \\
 
-function App() {
+export default function App() {
 
   // state variable for difficulty level
   const [difficulty, setDifficulty] = useState("easy")
@@ -71,27 +71,42 @@ function App() {
 
   //state variable for "game state": 
   // - "game" when game is running
+  // - "quit" when game has been quit
+  // - "confirm" when confirming quit
+  // - "completed" when won
   const [gameState, setGameState] = useState("game");
 
+  //state variable for unit setting
   const [km, setKm] = useState(false);
 
+  //state variable for visual setting
   const [isDark, setIsDark] = useState(true); // State to track map display mode
-  
 
   //useRef element for scrolling when entering new value
   const bottomRef = useRef(null);
 
+  //useRef variable for handling auto scrolling on first render
   const firstRender = useRef(true);
   
-  // Set difficulty level: easy & reset guesses
+  // functions to set difficulty and reset game passed into settings menu
  
   function setHard () {
     setDifficulty("hard");
     restartGame();
   }
 
+  function setMedium () {
+    setDifficulty("medium");
+    restartGame();
+  }
+
   function setEasy () {
     setDifficulty("easy");
+    restartGame();
+  }
+
+  function setImpossible () {
+    setDifficulty("impossible");
     restartGame();
   }
 
@@ -110,6 +125,7 @@ function App() {
     
   }, [sorted]);
 
+  //catch-all function to reset everything when restarting game after quit or win
   function restartGame(){
     setCurrentGuess(null);
     clearGuessList();
@@ -117,6 +133,7 @@ function App() {
     setDisplayList([]);
     setSorted([]);
     setGameState("game");
+    nextId = 0;
   }
 
   return (
@@ -125,6 +142,7 @@ function App() {
 
       <h1>US City Guesser</h1>
 
+      {/* the dropdown menu */}
       <AutocompleteDropdown className = "drop"/>
 
       {/* button to trigger guess */}
@@ -158,7 +176,14 @@ function App() {
     {/* map component takes in list of guessed cities to project dots */}
     <Map guesses={displayList} isDark={isDark} /> 
 
-    <button data-testid = "give_up_button" className = "submit-button" onClick={function(){setGameState("quit")}}>Give up</button>
+    <button data-testid = "give_up_button"
+      className = "submit-button"
+      onClick={function(){
+      setGameState("confirm"); 
+      // const currentAttempts = parseInt(localStorage.getItem('giveUpCount') ?? '0');
+      // localStorage.setItem('giveUpCount', (currentAttempts + 1).toString());
+      // console.log(localStorage.getItem("giveUpCount"));
+      }}>Give up</button>
 
     <div className="GuessList">
         {/* the list of guesses which updates dynamically */}
@@ -169,22 +194,30 @@ function App() {
     {/* Component to handle guesses (dropdown that you click, not type and enter) */}
       
     {/* "completed" when won & hit 0 miles/km */}
-    {gameState === "completed"&&<GameCompletePopup restart={() => restartGame()} />}
+
+    {gameState === "completed" && <GameCompletePopup restart={() => restartGame()} guesses={nextId + 1} difficulty={difficulty}/>}
+
+    {/* "confirm" when confiming whether or not the user wants to quit */}
+    {gameState === "confirm" && <ConfirmGiveUp confirm={() => setGameState("quit")} undo={() => setGameState("game")} />}
+
+  
     {gameState === "completed" && <Confetti />}
-    
-    {/* "quit" when giving up */}
-    {gameState === "quit" && <GiveUpPopup restart={() => restartGame()} />}
 
     
+    {/* "quit" when giving up */}
+    {gameState === "quit" && <GiveUpPopup restart={() => restartGame()} difficulty={difficulty} />}
+
     {/* Component for a popup that displays info*/}
     <InfoPopUp />
 
     {/* Component for a popup that displays settings*/}
-
+    {/* functions for the settings options need to be passed in to update state */}
     <Settings 
     difficulty = {difficulty} 
     setEasy={setEasy} 
+    setMedium={setMedium}
     setHard = {setHard} 
+    setImpossible={setImpossible}
     isKm = {km} 
     changeToKm = {() => setKm(true)} 
     changeToMiles = {() => setKm(false)} 
@@ -199,5 +232,3 @@ function App() {
     
   )
 }
-
-export default App
