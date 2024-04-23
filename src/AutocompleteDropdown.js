@@ -13,15 +13,22 @@ const AutocompleteDropdown = () => {
     setInput(value);
     if (value.length > 0) {
       const regex = new RegExp(`${value}`, 'i');
-      setSuggestions(Cities.sort().filter(v => regex.test(v.city)));
+      setSuggestions(
+        Cities.sort().filter(
+          (city) =>
+            regex.test(city.city) || // Check if input matches city name
+            regex.test(city.state_id) // Check if input matches state code
+        )
+      );
     } else {
       setSuggestions([]);
     }
   };
 
-  const suggestionSelected = (value) => {
-    setInput(value);
+  const suggestionSelected = (city, state) => {
+    setInput(`${city}, ${state}`);
     setSuggestions([]);
+    setCurrentGuess({ city, state_id: state }); // Set current guess
   };
 
   const renderSuggestions = () => {
@@ -30,7 +37,14 @@ const AutocompleteDropdown = () => {
     }
     return (
       <ul className="suggestions">
-        {suggestions.map((item) => <li key={item.id} onClick={() => {suggestionSelected(item.city + ", " + item.state_id); setCurrentGuess(item); console.log(item)}}>{item.city +", " + item.state_id}</li>)}
+        {suggestions.map((item) => (
+          <li
+            key={item.id}
+            onClick={() => suggestionSelected(item.city, item.state_id)}
+          >
+            {item.city}, {item.state_id}
+          </li>
+        ))}
       </ul>
     );
   };
