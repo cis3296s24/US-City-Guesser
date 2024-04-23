@@ -40,7 +40,8 @@ export default function Map({ guesses = [], isDark }) {
             .attr('transform', ({ lng, lat }) => `translate(${projection([lng, lat]).join(",")})`)
             .append('circle')
             .attr('r', 4)
-            .attr('fill', 'red');
+            .attr('fill', 'red')
+            .attr('stroke', stroke);
 
         const element = document.getElementById("map");
         while (element.firstChild) {
