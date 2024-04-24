@@ -23,15 +23,15 @@ function InfoPopUp() {
           <div className="info-popup">
             <button onClick={closeInfo} className="close-button">Close</button>
             <h2>Welcome to US City Guesser!</h2><br/><br/>
-            <h4>How to play?</h4>
+            <h3>How to play?</h3><br/><br/>
             <p>A random city has been chosen from the USA. To find the correct city, type a guess in the search box, click it, and hit "submit guess".</p>
             <p>A dot will appear on the map where your guess was, and the distance to the target city will be listed below the map. As you get closer to the proximity of the target city, 
             the dots become more <span style={{color: 'red', fontWeight: 'bold'}}>red</span>. When you finally guess the correct city, a <span style={{color: 'green', fontWeight: 'bold'}}>green</span> dot 
-            will be displayed over the tagret city.
+            will be displayed over the target city.
             Use this data to find the correct city.</p>
             <p>After completing the game, click "restart" to play again!</p>
             <p>Click on the settings button to adjust difficulty, units, and visual display options.</p>
-            <p>Data retrieved from: https://simplemaps.com/data/us-cities</p>
+            <p>Data retrieved from: <a href="https://simplemaps.com/data/us-cities">US Cities Database</a></p>
 
             {/* <h3>Color Guide for Dots shown on map</h3>
             <p>Depending on light/dark mode preference the first image is </p>
