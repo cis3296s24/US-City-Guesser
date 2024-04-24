@@ -18,13 +18,11 @@ Welcome to the US City Guessing Game. Test your knowledge of US cities!
 
 # Introduction
 
-What a fun way to test your knowledge of US Cities. You'll be presented with clues about a particular city after a few guesses and your task is to guess the correct city either with or without the clues.
+What a fun way to test your knowledge of US Cities. You'll be presented with information about a particular city with unlimited guesses and your task is to guess the correct city that computer picks in random.
 
 # Instructions
 
-The first 2 attempts/guesses will be without hints to see if the guests can guess the US city right from our randomized data. After the first 2 attempts incorrect, then we provide our first hints provided. Same 2 attempts afterwards again incorrect, then we provide our final hints provided to give our guests one last guess before it becomes revealed.
+To find the correct city, type a guess in the search box, click it, and hit "submit guess".
+A dot will appear on the map where your guess displays the guessed city attempt. The distance to the target city will be listed below the map with calculation of how far off you are to the target city. As you get closer to it, the dots will become more red, which is like saying you're getting "hotter". Use this data to help yourself find the correct city destination. When you finally guess the correct targeted city, a dot will be displayed in green over the targeted city. Once you complete the game, you can click "restart" to play again!
 
-5 points without a clue
-3 points with 1st clue
-1 point with 2nd clue
-0 if someone either gives up or already used up the 5 guesses attempt
+Good luck!!!
